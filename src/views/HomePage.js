@@ -19,6 +19,14 @@ function App() {
       <Feature />
       <Fade right>
         <Products heading="Want to try something new?" data={productDataTwo} />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "50px",
+          }}
+        ></div>
       </Fade>
       <Footer />
     </Router>

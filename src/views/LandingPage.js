@@ -5,18 +5,7 @@ import Container from "@material-ui/core/Container";
 
 function App() {
   return (
-    <div className="App" style={{ overflow: "hidden", maxWidth: "100vw" }}>
-      {/* <AppBar position="static"  style={{ background: 'transparent', boxShadow: 'none',display: 'flex',flexDirection: 'row',padding: '10px'}}>
-        <div class="logosection" style={{display:'flex',float:'left'}}><FastfoodIcon style={{fontSize:'36px',color:'black',padding:'5px 25px'}}></FastfoodIcon>        
-        <Button class="trademark" color="inherit" style={{color: 'black', fontSize:'30px',background: 'transparent',border: '0'}}>RecipeShare</Button>
-        </div>
-        <div class="navigation" style={{position: "fixed",display:'inline',right: "50px",justifyContent:'end'}}>
-        <Button class="nav_links" color="inherit" style={{color: 'black', fontWeight: '700',margin:'0px 10px',fontSize: '16px',background: 'transparent',border: '0',padding: '5px'}}>Home</Button>
-        <Button class="nav_links" color="inherit" style={{color: 'black', fontWeight: '700',margin:'0px 10px',fontSize: '16px',background: 'transparent',border: '0',padding: '5px'}}>Recipes</Button>
-        <Button class="nav_links" color="inherit" style={{color: 'black', fontWeight: '700',margin:'0px 10px',fontSize: '16px',background: 'transparent',border: '0',padding: '5px'}}>Categories</Button>
-        <Button class="nav_links" color="inherit" style={{color: 'black', fontWeight: '700',margin:'0px 10px',fontSize: '16px',background: 'transparent',border: '0',padding: '5px'}}>Contact Us</Button>
-        </div>
-      </AppBar> */}
+    <div className="App" style={{ maxWidth: "100vw" }}>
       <header>
         <div
           class="logosection"
