@@ -54,7 +54,7 @@ header {
   cursor: pointer;
 }
 
-button {
+.register_btn {
   font-size: 16px;
   color: #24252a;
   text-decoration: none;
@@ -66,12 +66,19 @@ button {
   transition: all 0.3s ease 0s;
 }
 
-button:hover {
+.register_btn:hover {
   background-color: rgba(0, 136, 169, 0.8);
 }
 
 .App {
   text-align: center;
+  min-height: 100vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 254, 234, 1) 0%,
+    rgba(255, 254, 234, 1) 35%,
+    #b7e8eb 100%
+  );
 }
 
 .App-logo {
@@ -91,12 +98,6 @@ body {
   margin: 0;
 }
 body {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 254, 234, 1) 0%,
-    rgba(255, 254, 234, 1) 35%,
-    #b7e8eb 100%
-  );
   overflow-x: hidden;
 }
 
