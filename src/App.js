@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./views/HomePage";
 import LandingPage from "./views/LandingPage";
 import LoginPage from "./views/Authentication/LoginPage";
+import CreateRecipe from "./views/CreateRecipe/CreateRecipe";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/create" component={CreateRecipe} />
       </Switch>
     </BrowserRouter>
   );
