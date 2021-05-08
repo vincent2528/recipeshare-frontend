@@ -50,7 +50,7 @@ class App extends React.Component {
       >
         <Navigation />
 
-        <div className="App2">
+        <div className="App2" style={{ marginTop: "100px" }}>
           <div className="login">
             <div className="container" ref={(ref) => (this.container = ref)}>
               {isLogginActive && (

@@ -22,12 +22,12 @@
   max-width: 600px;
 }
 
-header {
+/* header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 5%;
-}
+} */
 
 .logo {
   cursor: pointer;

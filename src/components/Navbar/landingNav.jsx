@@ -4,7 +4,13 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 
 export default function landingNav() {
   return (
-    <header>
+    <header
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "20px",
+      }}
+    >
       <div
         class="logosection"
         style={{

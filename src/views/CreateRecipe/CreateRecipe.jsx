@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../../components/Navbar";
-import Sidebar from "../../components/Sidebar";
 import CreateForm from "./form";
+import NavBar from "../../components/Navbar/Navbar";
 import { HeroContainer } from "../../components/Hero/HeroElements";
-import { GlobalStyle } from "../globalStyles";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const Hero = () => {
@@ -15,11 +13,15 @@ const Hero = () => {
 
   return (
     <Router>
-      <GlobalStyle />
+      <NavBar />
       <HeroContainer>
-        <Navbar toggle={toggle} />
-        <Sidebar isOpen={isOpen} toggle={toggle} />
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: "100px",
+          }}
+        >
           <CreateForm />
         </div>
       </HeroContainer>
