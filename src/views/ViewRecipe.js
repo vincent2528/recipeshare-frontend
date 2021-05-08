@@ -126,7 +126,7 @@ export default function ViewRecipe() {
           background:
             "url(https://d2gk7xgygi98cy.cloudfront.net/6267-3-large.jpg) no-repeat 50% 50%",
           backgroundSize: "cover",
-          height: "300px",
+          height: "200px",
         }}
       ></div>
       <div class="recipe-card__body">
