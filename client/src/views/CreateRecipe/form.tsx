@@ -17,8 +17,11 @@ import {
   FormikValues,
   FieldArray,
 } from "formik";
-import {  TextField } from "formik-material-ui";
-import React, { useState } from "react";
+import { TextField } from "formik-material-ui";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+
+import React, { useEffect, useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
@@ -26,14 +29,19 @@ import AddIcon from "@material-ui/icons/Add";
 const sleep = (time) => new Promise((acc) => setTimeout(acc, time));
 
 export default function Home() {
+  const history = useHistory();
+  const tokenn = localStorage.getItem("auth-token");
+
   return (
     <Card>
       <CardContent>
         <FormikStepper
           initialValues={{
-            dishName: "",
+            recipe_name: "",
             desc: "",
-            cuisineName: "",
+            recipe_image: "",
+            time: "60 min",
+            category_id: "1",
             ingredients: [""],
             steps: [""],
           }}
@@ -46,7 +54,7 @@ export default function Home() {
             <Box paddingBottom={2}>
               <Field
                 fullWidth
-                name="dishName"
+                name="recipe_name"
                 component={TextField}
                 label="Dish Name"
                 required
@@ -74,7 +82,10 @@ export default function Home() {
             </Box>
           </FormikStep>
           <FormikStep label="Ingredients Required">
-            <Box paddingBottom={2} style={{maxHeight:'700px',overflow:'auto'}}>
+            <Box
+              paddingBottom={2}
+              style={{ maxHeight: "700px", overflow: "auto" }}
+            >
               <FieldArray name="ingredients">
                 {(fieldArrayProps) => {
                   const { push, remove, form } = fieldArrayProps;
@@ -83,13 +94,16 @@ export default function Home() {
                   return (
                     <div>
                       {ingredients.map((ingredient, index) => (
-                        <div key={index} style={{ display: "flex",marginBottom:'10px' }}>
+                        <div
+                          key={index}
+                          style={{ display: "flex", marginBottom: "10px" }}
+                        >
                           <Field
                             fullWidth
                             component={TextField}
                             name={`ingredients[${index}]`}
-                                  label="Add Ingredient"
-                                  placeholder="Sexy"
+                            label="Add Ingredient"
+                            placeholder="Enter ingredient"
                             required
                           />
                           {index > 0 && (
@@ -124,22 +138,27 @@ export default function Home() {
             </Box>
           </FormikStep>
           <FormikStep label="Steps For Recipe">
-            <Box paddingBottom={2} style={{maxHeight:'500px',overflow:'auto'}}>
+            <Box
+              paddingBottom={2}
+              style={{ maxHeight: "500px", overflow: "auto" }}
+            >
               <FieldArray name="steps">
                 {(fieldArrayProps) => {
                   const { push, remove, form } = fieldArrayProps;
                   const { values } = form;
                   const { steps } = values;
                   return (
-                      <div>
-                          
+                    <div>
                       {steps.map((step, index) => (
-                        <div key={index} style={{ display: "flex",marginBottom:'10px' }}>
+                        <div
+                          key={index}
+                          style={{ display: "flex", marginBottom: "10px" }}
+                        >
                           <Field
                             fullWidth
                             component={TextField}
-                                  name={`steps[${index}]`}
-                                  placeholder="Step Description"
+                            name={`steps[${index}]`}
+                            placeholder="Step Description"
                             label="Step Detail"
                             multiline
                             required
@@ -212,8 +231,18 @@ export function FormikStepper({
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
+          const temp = await axios.post("/api/recipe/create", values, {
+            headers: {
+              "x-auth-token": localStorage.getItem("auth-token"),
+            },
+          });
+
+          console.log("jehehehehejjejejejejjej");
           console.log(values);
+          alert("Success");
+
           setCompleted(true);
+          window.location.href = "/home";
         } else {
           setStep((s) => s + 1);
 
@@ -247,7 +276,7 @@ export function FormikStepper({
 
           {currentChild}
 
-          <Grid container spacing={2} style={{marginTop:'20px'}}>
+          <Grid container spacing={2} style={{ marginTop: "20px" }}>
             {step > 0 ? (
               <Grid item>
                 <Button

@@ -18,7 +18,9 @@ module.exports.getAllRecipe = async (req, res) => {
         [category]
       );
     } else {
-      querydata = await db.query("SELECT * FROM recipe_table ORDER BY views_count DESC");
+      querydata = await db.query(
+        "SELECT * FROM recipe_table ORDER BY views_count DESC"
+      );
     }
     // console.log(querydata[0]);
     res.status(200).json(querydata[0]);
@@ -44,22 +46,23 @@ module.exports.createRecipe = async (req, res) => {
 
     const {
       recipe_name,
-      recipe_desc,
+      desc,
       recipe_image,
       time,
       category_id,
-      recipe_steps,
-      recipe_ingredients,
+      ingredients,
+      steps,
     } = req.body;
+    console.log(req.body);
 
     const querydata = await db.query(
-      "INSERT INTO recipe_table(creator_id, recipe_name, recipe_desc, recipe_image, no_steps, time_required, category_id) VALUES (?,?,?,?,?,?,?)",
+      "INSERT INTO recipe_table(creator_id, recipe_name, recipe_desc, recipe_image, no_steps, time_required, category_id) VALUES (?,?,?,?,?,?,1)",
       [
         user_id,
         recipe_name,
-        recipe_desc,
+        desc,
         recipe_image,
-        recipe_steps.length,
+        steps.length,
         time,
         category_id,
       ]
@@ -68,24 +71,25 @@ module.exports.createRecipe = async (req, res) => {
 
     // ingredients table
 
-    for (var i = 0; i < recipe_ingredients.length; i++) {
+    for (var i = 0; i < ingredients.length; i++) {
       var query2 = await db.query(
         "INSERT INTO recipe_ingredients_table(recipe_id,instructions) VALUES(?,?)",
-        [querydata[0].insertId, recipe_ingredients[i]]
+        [querydata[0].insertId, ingredients[i]]
       );
     }
 
-    // steps table
+    // // steps table
 
-    for (var i = 0; i < recipe_ingredients.length; i++) {
+    for (var i = 0; i < ingredients.length; i++) {
       var query2 = await db.query(
         "INSERT INTO step_table(recipe_id,instructions) VALUES(?,?)",
-        [querydata[0].insertId, recipe_steps[i]]
+        [querydata[0].insertId, steps[i]]
       );
     }
 
     res.status(200).json({ message: "Created successfully" });
   } catch (err) {
+    console.log(err.message);
     res.status(500).json({ message: err.message });
   }
 };
@@ -162,30 +166,6 @@ module.exports.deleteRecipe = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //========================================================================================
 /*                                                                                      *

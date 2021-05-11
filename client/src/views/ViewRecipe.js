@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar/Navbar";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
@@ -110,6 +111,19 @@ const useStyles = makeStyles((theme) => ({
 export default function ViewRecipe() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const recipeIDFROMURL = window.location.pathname.substring(5);
+  const [posts, setPosts] = useState([]);
+  const [asdasd, setasdasd] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const postData = await axios.get("/api/recipe/" + recipeIDFROMURL);
+      setPosts(postData.data);
+      setasdasd(true);
+      console.log(postData.data[0][0].recipe_image);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -119,89 +133,58 @@ export default function ViewRecipe() {
     setValue(index);
   };
 
-  return (
-    <div class="recipe-card">
-      <div
-        style={{
-          background:
-            "url(https://d2gk7xgygi98cy.cloudfront.net/6267-3-large.jpg) no-repeat 50% 50%",
-          backgroundSize: "cover",
-          height: "200px",
-        }}
-      ></div>
-      <div class="recipe-card__body">
-        <h1 class="recipe-card__heading">Oatmeal Cookies</h1>
-        <h2 class="recipe-card__subhead">
-          Crunchy around the edges, softer in the center, these oatmeal cookies
-          feature the nutty taste and nubbly texture of oats.{" "}
-        </h2>
-        <div className={classes.root}>
-          <div className={classes.demo1}>
-            <AntTabs
-              value={value}
-              onChange={handleChange}
-              aria-label="ant example"
-            >
-              <AntTab label="Ingredients" />
-              <AntTab label="Methods" />
-            </AntTabs>
-            <TabPanel value={value} index={0}>
-              <Typography className={classes.padding} />
-              <ul class="recipe-card__ingredients">
-                <li>&frac14; cup unsalted butter</li>
-                <li>&frac14; cup vegetable shortening</li>
-                <li>&frac12; cup light brown sugar</li>
-                <li>&frac14; cup granulated sugar</li>
-                <li>1 teaspoon vanilla extract</li>
-                <li>1 &frac14; teaspoons ground cinnamon</li>
-                <li>&#8539; teaspoon ground nutmeg</li>
-                <li>1/2 teaspoon salt</li>
-                <li>1 teaspoon cider or white vinegar*</li>
-                <li>1 large egg</li>
-                <li>&frac12; teaspoon baking soda</li>
-                <li>&frac34; cup All-Purpose Flour</li>
-                <li>1 &frac12; cups rolled oats</li>
-                <li>1 cup golden raisins, optional</li>
-              </ul>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              <div
-                id="recipe-card__content--preparations"
-                class="recipe-card__content"
+  if (asdasd) {
+    return (
+      <div class="recipe-card">
+        <div
+          style={{
+            background: posts[0][0].recipe_image.length
+              ? `url(${posts[0][0].recipe_image}) no-repeat 50% 50%`
+              : "url(https://d2gk7xgygi98cy.cloudfront.net/6267-3-large.jpg) no-repeat 50% 50%",
+
+            backgroundSize: "cover",
+            height: "200px",
+          }}
+        ></div>
+        <div class="recipe-card__body">
+          <h1 class="recipe-card__heading">{posts[0][0].recipe_name}</h1>
+          <h2 class="recipe-card__subhead">{posts[0][0].recipe_desc}</h2>
+          <div className={classes.root}>
+            <div className={classes.demo1}>
+              <AntTabs
+                value={value}
+                onChange={handleChange}
+                aria-label="ant example"
               >
-                <ul class="preparation-steps">
-                  <li class="step_info">
-                    Cut bread into 1-in. cubes; place half in a greased 13x9-in.
-                    baking dish. Cut cream cheese into 1-in. cubes; place over
-                    bread. Top with blueberries and remaining bread cubes.
-                  </li>
-
-                  <li class="step_info">
-                    Whisk the eggs, milk and syrup in a large bowl. Pour over
-                    bread mixture. Cover and refrigerate for 8 hours or
-                    overnight.
-                  </li>
-
-                  <li class="step_info">
-                    Remove from the refrigerator 30 minutes before baking. Cover
-                    and bake at 350° for 30 minutes. Uncover; bake 25-30 minutes
-                    longer or until a knife inserted in center comes out clean.
-                  </li>
-
-                  <li class="step_info">
-                    Combine the sugar, water and cornstarch until smooth in a
-                    small saucepan. Bring to a boil over medium heat; cook and
-                    stir until thickened, 3 minutes. Stir in blueberries; bring
-                    to a boil. Reduce heat and simmer until berries burst, 8-10
-                    minutes. Remove from heat; stir in butter. Serve with French
-                    toast.
-                  </li>
+                <AntTab label="Ingredients" />
+                <AntTab label="Methods" />
+              </AntTabs>
+              <TabPanel value={value} index={0}>
+                <Typography className={classes.padding} />
+                <ul class="recipe-card__ingredients">
+                  {posts[1].map((post) => (
+                    <li>{post.instructions}</li>
+                  ))}
                 </ul>
-              </div>
-            </TabPanel>
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <div
+                  id="recipe-card__content--preparations"
+                  class="recipe-card__content"
+                >
+                  <ul class="preparation-steps">
+                    {posts[2].map((post) => (
+                      <li class="step_info">{post.instructions}</li>
+                    ))}
+                  </ul>
+                </div>
+              </TabPanel>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <></>;
+  }
 }

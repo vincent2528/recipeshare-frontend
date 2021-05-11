@@ -115,7 +115,7 @@ export default function Home() {
                           color="primary"
                           onClick={() => push(ingredients.length)}
                           startIcon={<AddIcon />}
-                          style={{padding:'5px',marginTop:'10px'}}
+                          style={{ padding: "5px", marginTop: "10px" }}
                         >
                           Add Ingredient
                         </Button>
@@ -165,7 +165,7 @@ export default function Home() {
                           color="primary"
                           onClick={() => push(steps.length)}
                           startIcon={<AddIcon />}
-                          style={{padding:'5px',marginTop:'10px'}}
+                          style={{ padding: "5px", marginTop: "10px" }}
                         >
                           Add Step
                         </Button>
@@ -214,6 +214,7 @@ export function FormikStepper({
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
           console.log({ values });
+          console.log("hehehehhehehehehhhhhhhhhhhh");
           setCompleted(true);
         } else {
           setStep((s) => s + 1);
