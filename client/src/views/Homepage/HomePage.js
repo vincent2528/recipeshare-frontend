@@ -110,6 +110,9 @@ export default function HomePage() {
             fontSize: "18px",
             color: "#fff",
           }}
+          onClick={() => {
+            history.push("/create");
+          }}
         >
           Create Recipe
         </Button>{" "}
@@ -207,6 +210,7 @@ export default function HomePage() {
                           onClick={() =>
                             history.push("/view/" + recipe.recipe_id)
                           }
+                          style={{ cursor: "pointer" }}
                         >
                           View Recipe
                         </a>

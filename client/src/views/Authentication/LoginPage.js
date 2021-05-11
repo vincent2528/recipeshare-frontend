@@ -65,59 +65,70 @@ export default function Login() {
 
   const classes = useStyles();
   return (
-    <Container component="main" maxWidth="xs">
+    <div
+      style={{
+        maxWidth: "100vw",
+        height: "100vh",
+        background:
+          "radial-gradient(ellipse at center,rgba(255, 254, 234, 1) 0%,rgba(255, 254, 234, 1) 35%,#b7e8eb 100%",
+      }}
+    >
+      {" "}
       <Navigation />
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Log in
-        </Typography>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Log in
+          </Typography>
 
-        <form onSubmit={submit} className={classes.form}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="userName"
-            label="Username"
-            name="userName"
-            onChange={(e) => setUsername(e.target.value)}
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="password"
-            label="Password"
-            name="password"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Login
-          </Button>
-          <Link
-            onClick={() => {
-              history.push("/signup");
-            }}
-            variant="body2"
-          >
-            {"Don't have an account? Sign Up"}
-          </Link>
-        </form>
-      </div>
-    </Container>
+          <form onSubmit={submit} className={classes.form}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="userName"
+              label="Username"
+              name="userName"
+              onChange={(e) => setUsername(e.target.value)}
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="password"
+              label="Password"
+              name="password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Login
+            </Button>
+            <Link
+              onClick={() => {
+                history.push("/signup");
+              }}
+              variant="body2"
+              style={{ cursor: "pointer" }}
+            >
+              {"Don't have an account? Sign Up"}
+            </Link>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }

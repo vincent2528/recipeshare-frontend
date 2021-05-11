@@ -2,8 +2,11 @@ import "./App.css";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Navigation from "../components/Navbar/landingNav";
+import { useHistory } from "react-router-dom";
 
 function App() {
+  const history = useHistory();
+
   return (
     <div className="App" style={{ maxWidth: "100vw", height: "100%" }}>
       <Navigation />
@@ -21,6 +24,9 @@ function App() {
               variant="outlined"
               color="primary"
               style={{ borderRadius: "50px" }}
+              onClick={() => {
+                history.push("/login");
+              }}
             >
               Already have an account?
             </Button>
@@ -30,6 +36,9 @@ function App() {
                 backgroundColor: "#4BB543",
                 marginLeft: "10px",
                 borderRadius: "50px",
+              }}
+              onClick={() => {
+                history.push("/signup");
               }}
             >
               Sign Up for Free

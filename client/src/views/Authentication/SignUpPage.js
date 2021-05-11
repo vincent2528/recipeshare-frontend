@@ -137,93 +137,104 @@ export default function SignUpPage() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div
+      style={{
+        maxWidth: "100vw",
+        height: "100vh",
+        background:
+          "radial-gradient(ellipse at center,rgba(255, 254, 234, 1) 0%,rgba(255, 254, 234, 1) 35%,#b7e8eb 100%",
+      }}
+    >
+      {" "}
       <Navigation />
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign Up
-        </Typography>
-
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="uname"
-                label="Username"
-                name="uname"
-                value={username}
-                onChange={handleUsernameChange}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                onChange={handleEmailChange}
-                value={email}
-                type="email"
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                value={password}
-                label="Password"
-                onChange={handlePassChange}
-                type="password"
-                id="password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={handleCPassChange}
-                label="Confirm Password"
-                type="password"
-                id="confirmPassword"
-              />
-            </Grid>
-          </Grid>
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
             Sign Up
-          </Button>
-          <Link
-            onClick={() => {
-              history.push("/login");
-            }}
-            variant="body2"
-          >
-            {"Already a user? Sign In"}
-          </Link>
-        </form>
-      </div>
-    </Container>
+          </Typography>
+
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="uname"
+                  label="Username"
+                  name="uname"
+                  value={username}
+                  onChange={handleUsernameChange}
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  onChange={handleEmailChange}
+                  value={email}
+                  type="email"
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  value={password}
+                  label="Password"
+                  onChange={handlePassChange}
+                  type="password"
+                  id="password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={handleCPassChange}
+                  label="Confirm Password"
+                  type="password"
+                  id="confirmPassword"
+                />
+              </Grid>
+            </Grid>
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign Up
+            </Button>
+            <Link
+              onClick={() => {
+                history.push("/login");
+              }}
+              variant="body2"
+              style={{ cursor: "pointer" }}
+            >
+              {"Already a user? Sign In"}
+            </Link>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }

@@ -54,7 +54,11 @@ export default function landingNav() {
         </ul>
       </nav>
       <a class="register" href="/">
-        <button class="register_btn">Sign Up</button>
+        <button class="register_btn">
+          <a href="/signup" style={{ textDecoration: "none", color: "black" }}>
+            Sign Up
+          </a>
+        </button>
       </a>
     </header>
   );

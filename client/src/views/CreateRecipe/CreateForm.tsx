@@ -42,6 +42,7 @@ export default function Home() {
             dishName: "",
             desc: "",
             cuisineName: "",
+            cuisineImage: "",
             ingredients: [""],
             steps: [""],
           }}
@@ -72,11 +73,20 @@ export default function Home() {
             <Box paddingBottom={2}>
               <Field
                 fullWidth
+                name="cuisineImage"
+                component={TextField}
+                label="Cuisine Image"
+              />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field
+                fullWidth
                 name="cuisineName"
                 component={TextField}
                 label="Cuisine Name"
               />
             </Box>
+            
           </FormikStep>
           <FormikStep label="Bank Accounts">
             <Box paddingBottom={2}>

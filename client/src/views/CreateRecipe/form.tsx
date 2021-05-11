@@ -80,6 +80,15 @@ export default function Home() {
                 required
               />
             </Box>
+            <Box paddingBottom={2}>
+              <Field
+                fullWidth
+                name="recipe_image"
+                component={TextField}
+                label="Recipe Image"
+                required
+              />
+            </Box>
           </FormikStep>
           <FormikStep label="Ingredients Required">
             <Box
